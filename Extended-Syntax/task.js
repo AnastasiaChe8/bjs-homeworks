@@ -1,5 +1,4 @@
 
-
 function calculateQuadraticEquation(){
     let a = +window.a.value;
     let b = +window.b.value;
@@ -21,15 +20,17 @@ function getResult(a,b,c){
     else if (d == 0) {
         x= -b / (2*a);
         console.log ("Уравнение имеет один корень = " + x);
+     
     }
     else {
         let k = Math.sqrt(d)
-        x = (-b + k)/2;
-        x_2 = (-b - k)/2;
+        x = (-b + k)/2 * a;
+        x_2 = (-b - k)/2 * a;
         console.log ("Уравнение имеет два корня: X максимальное = " + x + " X минимальное = " + x_2);
+      
     }
-return [x, x_2];
 }
+getResult(8,93,6);
 
 function calculateDrinkTask(){
     let name = window.personName.value;
@@ -38,17 +39,18 @@ function calculateDrinkTask(){
     window.drink.textContent = drink;
 }
 
-function askDrink(name,dateOfBirthday){
+function askDrink(name, dateOfBirthday){
   let today = new Date();
-  let nowYear = dateOfBirthday.getFullYear();
-  let result = today.getFullYear() - nowYear;
+  let nowYear = new Date(dateOfBirthday);
+  let result = today.getFullYear() - nowYear.getFullYear();
 if (result > 18) {
   console.log ("Не желаете ли олд-фэшн " + name + "?");
 } else {
   console.log ("Сожалею," + name + " , но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!");
 }
+return
 }
-  
+askDrink("Вова", "November 11, 1918")
 
 function calculateAverageRating(){
     let marks = window.marks.value.split("").map(Number).filter((n)=> !isNaN(n) && n > 0);
@@ -57,9 +59,18 @@ function calculateAverageRating(){
 }
 
 function getAverageMark(marks){
-        for (let i=0; i<5; i++) {
-          console.log(marks)
-        }
+  let sum = 0;
+  for (i=0; i<marks.length; i++) {
+    sum += marks[i];
+    average = sum/marks.length;
+  }
 
-    }
-
+  if (marks.length>5) {
+    marks.splice(5);
+    console.log ("Общее число оценок больше пяти. Средняя оценка исходя из первых пяти оценок: " + average);
+}
+  else {
+    console.log ("Средняя оценка: " + average);
+}
+}
+getAverageMark ([5,2,2,2,2,4,2]);
