@@ -39,7 +39,7 @@ function calculateDrinkTask(){
     window.drink.textContent = drink;
 }
 
-function askDrink(name, dateOfBirthday){
+function askDrink(name, dateOfBirthday) {
   let today = new Date();
   let nowYear = new Date(dateOfBirthday);
   let result = today.getFullYear() - nowYear.getFullYear();
@@ -50,7 +50,8 @@ if (result > 18) {
 }
 return
 }
-askDrink("Вова", "November 11, 1918")
+///не очень понимаю, какой следует задавать формат даты, задаю строкой - вроде как все работает 
+askDrink ("Вова", "April 17, 2008 21:08:00")
 
 function calculateAverageRating(){
     let marks = window.marks.value.split("").map(Number).filter((n)=> !isNaN(n) && n > 0);
@@ -60,17 +61,24 @@ function calculateAverageRating(){
 
 function getAverageMark(marks){
   let sum = 0;
-  for (i=0; i<marks.length; i++) {
-    sum += marks[i];
-    average = sum/marks.length;
-  }
-
-  if (marks.length>5) {
+    if (marks.length>5) {
     marks.splice(5);
+      for (i=0; i<marks.length; i++) {
+        sum += marks[i];}
+        average = sum/marks.length
     console.log ("Общее число оценок больше пяти. Средняя оценка исходя из первых пяти оценок: " + average);
-}
-  else {
+      
+    }
+    else {
+      for (i=0; i<marks.length; i++) {
+        sum += marks[i];}
+        average = sum/marks.length
     console.log ("Средняя оценка: " + average);
-}
+      
+    }
 }
 getAverageMark ([5,2,2,2,2,4,2]);
+
+
+
+  
