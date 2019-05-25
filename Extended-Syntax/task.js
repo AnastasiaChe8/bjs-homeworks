@@ -20,14 +20,14 @@ function getResult(a,b,c){
     else if (d == 0) {
         x= -b / (2*a);
         console.log ("Уравнение имеет один корень = " + x);
-     
+        return
     }
     else {
         let k = Math.sqrt(d)
         x = (-b + k)/2 * a;
         x_2 = (-b - k)/2 * a;
         console.log ("Уравнение имеет два корня: X максимальное = " + x + " X минимальное = " + x_2);
-      
+        return
     }
 }
 getResult(8,93,6);
@@ -41,7 +41,7 @@ function calculateDrinkTask(){
 
 function askDrink(name, dateOfBirthday) {
   let today = new Date();
-  let nowYear = new Date(dateOfBirthday);
+  let nowYear = dateOfBirthday;
   let result = today.getFullYear() - nowYear.getFullYear();
 if (result > 18) {
   console.log ("Не желаете ли олд-фэшн " + name + "?");
@@ -50,8 +50,7 @@ if (result > 18) {
 }
 return
 }
-///не очень понимаю, какой следует задавать формат даты, задаю строкой - вроде как все работает 
-askDrink ("Вова", "April 17, 2008 21:08:00")
+
 
 function calculateAverageRating(){
     let marks = window.marks.value.split("").map(Number).filter((n)=> !isNaN(n) && n > 0);
@@ -61,24 +60,26 @@ function calculateAverageRating(){
 
 function getAverageMark(marks){
   let sum = 0;
-    if (marks.length>5) {
+
+  for (let i=0; i<marks.length; i++){
+    sum += marks[i];}
+
+    //console.log(sum); проверка суммы
+
+  let average = sum/marks.length
+  if (marks.length>5) {
     marks.splice(5);
-      for (i=0; i<marks.length; i++) {
-        sum += marks[i];}
-        average = sum/marks.length
+   //return marks.length; /// "обновить значение длины массива после условия"
     console.log ("Общее число оценок больше пяти. Средняя оценка исходя из первых пяти оценок: " + average);
-      
-    }
-    else {
-      for (i=0; i<marks.length; i++) {
-        sum += marks[i];}
-        average = sum/marks.length
+    return average;
+ }
+
+
+
+  else {
     console.log ("Средняя оценка: " + average);
-      
-    }
+    return average;
+  }
 }
-getAverageMark ([5,2,2,2,2,4,2]);
 
-
-
-  
+getAverageMark ([5,2,2,2,2,4,2])
